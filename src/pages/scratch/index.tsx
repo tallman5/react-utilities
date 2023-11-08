@@ -14,7 +14,7 @@ const ScratchIndex = () => {
                     <CodeEditor
                         style={{ border: '1px solid gray', height: '100px' }}
                         options={{
-                            value: '// some comment',
+                            value: '// scratch comment',
                             language: 'javascript',
                             readOnly: true
                         }}

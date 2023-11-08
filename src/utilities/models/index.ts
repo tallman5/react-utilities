@@ -1,9 +1,9 @@
-interface Map {
+interface AzMap {
 
 }
 
 interface Atlas {
-    Map: Map;
+    Map: AzMap;
 }
 
 interface DataTable {

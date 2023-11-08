@@ -24,8 +24,16 @@
     "typecheck": "tsc --noEmit",
     "dist": "tsc --project tsconfig.build.json"
   },
-  "author": "Joseph McGurkin <joseph@mcgurkin.net>",
+  "author": "Joseph McGurkin (Discord: tallman5)",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tallman5/react-utilities.git"
+  },
+  "homepage": "https://github.com/tallman5/react-utilities",
+  "bugs": {
+    "url": "https://github.com/tallman5/react-utilities/issues"
+  },
   "dependencies": {
     "@react-spring/web": "^9.7.3",
     "monaco-editor": "^0.44.0",
