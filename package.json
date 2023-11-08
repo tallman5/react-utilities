@@ -1,0 +1,40 @@
+{
+  "name": "@tallman/react-utilities",
+  "version": "1.0.0",
+  "description": "Reusable s#!t frequently needed on web projects.",
+  "main": "dist/index.js",
+  "files": [
+    "/dist",
+    "!/dist/**/*.js.map",
+    "!/dist/**/*.tsbuildinfo"
+  ],
+  "keywords": [
+    "utilities",
+    "typescript",
+    "monaco",
+    "react",
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop -H 0.0.0.0 -p 8000",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "typecheck": "tsc --noEmit",
+    "dist": "tsc --project tsconfig.build.json"
+  },
+  "author": "Joseph McGurkin <joseph@mcgurkin.net>",
+  "license": "ISC",
+  "dependencies": {
+    "@react-spring/web": "^9.7.3",
+    "monaco-editor": "^0.44.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-use-measure": "^2.1.1"
+  },
+  "devDependencies": {
+    "bootstrap": "^5.3.2",
+    "gatsby": "^5.12.9"
+  }
+}
