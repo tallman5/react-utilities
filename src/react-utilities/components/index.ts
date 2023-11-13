@@ -1,4 +1,4 @@
 export * from './backdrop';
-export * from './codeEditor';
+export * from './monaco';
 export * from './stringify';
 export * from './timeoutBar';

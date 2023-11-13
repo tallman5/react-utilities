@@ -1,9 +1,10 @@
 import { CSSProperties, useEffect, useRef, useState } from 'react';
-import { Size, defaultQueries, isBrowser } from '..';
-import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api';
-export type MonacoEditor = typeof monacoEditor;
+import { Atlas, Google, Size, defaultQueries, isBrowser } from '..';
 
-export function useAtlas() {
+export * from './useMonaco';
+export * from './useOnigasm';
+
+export const useAtlas = () => {
     const azCss = useCssLoader("https://atlas.microsoft.com/sdk/javascript/mapcontrol/2/atlas.min.css");
     const azScript = useScriptLoader("https://atlas.microsoft.com/sdk/javascript/mapcontrol/2/atlas.min.js");
     const [a, setA] = useState<Atlas>();
@@ -12,11 +13,12 @@ export function useAtlas() {
         if (!azCss || !azScript) return;
 
         const waitForAtlas = () => {
-            if (typeof window.atlas === 'undefined') {
+            const windowAny = window as any;
+            if (typeof windowAny.atlas === 'undefined') {
                 setTimeout(waitForAtlas, 100);
             }
             else {
-                setA(window.atlas);
+                setA(windowAny.atlas);
             }
         }
 
@@ -26,7 +28,7 @@ export function useAtlas() {
     return a;
 }
 
-export function useColumnSizes(size: Size, colSpan: number) {
+export const useColumnSizes = (size: Size, colSpan: number) => {
     const collapsedStyle: CSSProperties = {
         flexShrink: 0,
         flexBasis: 'auto'
@@ -54,7 +56,7 @@ export function useColumnSizes(size: Size, colSpan: number) {
     }
 }
 
-export function useColumnWidths(width: number) {
+export const useColumnWidths = (width: number) => {
     const queries: string[] = []
     const values: string[] = []
 
@@ -66,7 +68,7 @@ export function useColumnWidths(width: number) {
     return useMedia(queries, values, '100%')
 }
 
-export function useCssLoader(url: string) {
+export const useCssLoader = (url: string) => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -105,7 +107,7 @@ export function useCssLoader(url: string) {
     return isLoaded;
 }
 
-export function useContainerSizes(size: Size) {
+export const useContainerSizes = (size: Size) => {
     switch (size) {
         case Size.fluid:
             return useMedia(defaultQueries, ['100%', '100%', '100%', '100%', '100%'], '100%')
@@ -122,7 +124,7 @@ export function useContainerSizes(size: Size) {
     }
 }
 
-export function useGoogleCharts() {
+export const useGoogleCharts = () => {
     const [g, setGoogle] = useState<Google>();
     const googleScriptLoaded = useScriptLoader('https://www.gstatic.com/charts/loader.js');
 
@@ -130,8 +132,9 @@ export function useGoogleCharts() {
         if (!googleScriptLoaded) return;
 
         const checkGoogle = () => {
-            if (window.google) {
-                setGoogle(window.google);
+            const windowAny = window as any;
+            if (windowAny.google) {
+                setGoogle(windowAny.google);
             } else {
                 setTimeout(checkGoogle, 100);
             }
@@ -144,7 +147,7 @@ export function useGoogleCharts() {
     return g;
 }
 
-export function useMedia<T>(queries: string[], values: T[], defaultValue: T) {
+export const useMedia = <T>(queries: string[], values: T[], defaultValue: T) => {
     if (!isBrowser) return defaultValue
 
     const mediaQueryLists = queries.map((q) => window?.matchMedia(q));
@@ -166,51 +169,13 @@ export function useMedia<T>(queries: string[], values: T[], defaultValue: T) {
     return value;
 }
 
-export function useMonacoEditor(version: string = '0.44.0') {
-    const monacoBaseUrl = `https://cdn.jsdelivr.net/npm/monaco-editor@${version}/min/vs`;
-    const [m, setMonaco] = useState<MonacoEditor>();
-    const scriptLoaded = useScriptLoader(`${monacoBaseUrl}/loader.js`);
-
-    useEffect(() => {
-        if (m) return;
-        if (!scriptLoaded) return;
-
-        const checkRequire = () => {
-            const require = (window as any).require;
-            if (require) {
-                require.config({
-                    paths: {
-                        vs: monacoBaseUrl,
-                    }
-                });
-
-                require(
-                    ['vs/editor/editor.main'],
-                    function (monaco: MonacoEditor) {
-                        setMonaco(monaco);
-                    }
-                );
-            }
-            else {
-                console.log(`Require not ready`);
-                setTimeout(checkRequire, 50);
-            }
-        };
-
-        checkRequire();
-
-    }, [scriptLoaded]);
-
-    return m;
-}
-
-export function usePrevious<T>(value: T) {
+export const usePrevious = <T>(value: T) => {
     const ref = useRef<T>()
     useEffect(() => void (ref.current = value), [value])
     return ref.current
 }
 
-export function useScriptLoader(url: string) {
+export const useScriptLoader = (url: string) => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
@@ -249,13 +214,13 @@ export function useScriptLoader(url: string) {
     return isLoaded;
 }
 
-export function useWindowSize() {
+export const useWindowSize = () => {
     const [windowSize, setWindowSize] = useState({
         width: isBrowser ? window.innerWidth : 1200,
         height: isBrowser ? window.innerHeight : 800,
     });
 
-    function changeWindowSize() {
+    const changeWindowSize = () => {
         setWindowSize({ width: window.innerWidth, height: window.innerHeight });
     }
 

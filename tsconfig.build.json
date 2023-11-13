@@ -6,6 +6,6 @@
         "noEmit": false
     },
     "include": [
-        "./src/utilities/**/*",
+        "./src/react-utilities/**/*",
     ]
 }

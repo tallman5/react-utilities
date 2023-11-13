@@ -43,4 +43,4 @@ export const TimeoutBar = ({ duration = 5000, height = '10px', uiFunction = UiFu
             <animated.div style={{ ...props, ...barStyle }} className={'text-bg-' + uiFunction}></animated.div>
         </div>
     )
-}
+};

@@ -1,6 +1,7 @@
 export * from './components';
 export * from './hooks';
 export * from './icons';
+export * from './models';
 
 export const copyToClipboard = (textToCopy: string) => {
     // navigator clipboard api needs a secure context (https)
@@ -32,7 +33,7 @@ export const defaultQueries = [
 
 export const emptyGuid = "00000000-0000-0000-0000-000000000000";
 
-export function getQueryParam(key: string, defaultValue?: string) {
+export const getQueryParam = (key: string, defaultValue?: string) => {
     if (!isBrowser) return defaultValue || ''
     const urlParams = new URLSearchParams(window.location.search)
     for (const [k, v] of urlParams) {
@@ -43,7 +44,7 @@ export function getQueryParam(key: string, defaultValue?: string) {
     return defaultValue || ''
 }
 
-export function getStorageItem(key: string) {
+export const getStorageItem = (key: string) => {
     let returnValue = null;
     if (isBrowser) {
         const storageItem = window.localStorage.getItem(key);
@@ -56,7 +57,7 @@ export function getStorageItem(key: string) {
 
 export const isBrowser = typeof window !== "undefined" && window;
 
-export function setStorageItem(key: string, obj: any) {
+export const setStorageItem = (key: string, obj: any) => {
     const serializedObj = JSON.stringify(obj);
     window.localStorage.setItem(key, serializedObj);
 }

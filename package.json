@@ -1,6 +1,6 @@
 {
   "name": "@tallman/react-utilities",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Reusable s#!t frequently needed on web projects.",
   "main": "dist/index.js",
   "files": [
@@ -37,12 +37,20 @@
   "dependencies": {
     "@react-spring/web": "^9.7.3",
     "monaco-editor": "^0.44.0",
+    "monaco-editor-textmate": "^4.0.0",
+    "monaco-textmate": "^3.0.1",
+    "onigasm": "^2.2.5",
+    "path-browserify": "^1.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-use-measure": "^2.1.1"
   },
   "devDependencies": {
+    "@types/node": "^20.9.0",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
     "bootstrap": "^5.3.2",
-    "gatsby": "^5.12.9"
+    "gatsby": "^5.12.9",
+    "typescript": "^5.2.2"
   }
 }

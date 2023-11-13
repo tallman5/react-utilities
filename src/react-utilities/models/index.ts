@@ -1,25 +1,24 @@
-interface AzMap {
-
+export interface AzMap {
 }
 
-interface Atlas {
+export interface Atlas {
     Map: AzMap;
 }
 
-interface DataTable {
+export interface DataTable {
     setCell(row: number, column: number, value: any): void;
 }
 
-interface Google {
+export interface Google {
     charts: any;
     visualization: any;
 }
 
-interface GoogleChart {
+export interface GoogleChart {
     draw(data: any, options: any): void;
 }
 
-interface Window {
+export interface Window {
     atlas: Atlas;
     google: Google;
 }

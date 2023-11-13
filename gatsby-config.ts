@@ -5,7 +5,7 @@ const config: GatsbyConfig = {
     description: 'Reusable components and scripts.',
     siteName: 'example.com',
     siteUrl: `http://localhost:8000`,
-    title: `Utilities Testing`,
+    title: `Utilities Test Site`,
   },
   graphqlTypegen: true,
   plugins: [
